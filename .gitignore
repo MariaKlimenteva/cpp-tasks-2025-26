@@ -1,0 +1,7 @@
+!*/
+/[^.]*$
+*.out
+collatz
+quadratic
+stats
+stats_dynamic
