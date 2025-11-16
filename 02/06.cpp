@@ -3,8 +3,8 @@
 #include <limits>
 
 int main() {
-    const int MAX_SIZE = 1000;
-    double numbers[MAX_SIZE];
+    const int MAX_SIZE = 10000;
+    double numbers[MAX_SIZE] = {};
     int count = 0;
     
     while (std::cin >> numbers[count]) {
