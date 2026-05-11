@@ -5,18 +5,25 @@
 
 template <std::random_access_iterator It>
 void iterator_sort(It begin, It end) {
-    if (begin == end) return;
+    if (std::distance(begin, end) <= 1) return;
 
-    auto size = std::distance(begin, end);
+    auto i = begin;
+    auto j = std::prev(end);
+    auto pivot = *std::next(begin, std::distance(begin, end) / 2);
 
-    for (auto i = 0; i < size - 1; ++i) {
-        for (auto j = begin; j != std::prev(end, i + 1); std::advance(j, 1)) {
-            auto next_it = std::next(j);
-            if (*next_it < *j) {
-                std::iter_swap(j, next_it);
-            }
+    while (i <= j) {
+        while (*i < pivot) ++i;
+        while (*j > pivot) --j;
+
+        if (i <= j) {
+            std::iter_swap(i, j);
+            ++i;
+            --j;
         }
     }
+
+    if (begin < j) iterator_sort(begin, std::next(j));
+    if (i < end) iterator_sort(i, end);
 }
 
 int main() {
